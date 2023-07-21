@@ -1,0 +1,225 @@
+﻿<Page x:Class="ComputerStoreApp.Pages.AddCategoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ComputerStoreApp.Pages"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      FontSize="24">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBox}"
+               BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="Width"
+                    Value="300"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="Margin"
+                    Value="10"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Right"/>
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Doloman Pavljenko}"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
+        </Style>
+        
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Width"
+                    Value="200"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="Margin"
+                    Value="10"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Doloman Pavljenko}"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
+        </Style>
+        
+        <Style TargetType="{x:Type xctk:ColorPicker}">
+            <Setter Property="Width"
+                    Value="300"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="Margin"
+                    Value="10"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Right"/>
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Doloman Pavljenko}"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
+        </Style>
+     
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="Transparent"
+                Height="40"
+                BorderThickness="0 0 0 1"
+                BorderBrush="Gray"
+                Grid.ColumnSpan="2"/>
+
+        <Border Width="1"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                Background="Gray"
+                Margin="20"/>
+
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="1" Margin="50" 
+                    HorizontalAlignment="Left">
+            <TextBlock Text="Изображение категории" Width="250"/>
+            <Border Width="600"
+                    Background="White"
+                    CornerRadius="10"
+                    Padding="30"
+                    Height="450"
+                    BorderThickness="1"
+                    BorderBrush="Gray"
+                    Name="BackgroundBorder">
+                <StackPanel>
+                    <Border CornerRadius="10" Width="300" Height="300" BorderThickness="1" VerticalAlignment="Top">
+                        <Border.Background>
+                            <ImageBrush Stretch="UniformToFill" x:Name="PhotoImageBrush">
+                                <ImageBrush.ImageSource>
+                                    <Binding Path="Photo">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/Images/ImageStub.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                        <Binding.FallbackValue>
+                                            <ImageSource>/Images/ImageStub.png</ImageSource>
+                                        </Binding.FallbackValue>
+                                    </Binding>
+                                </ImageBrush.ImageSource>
+                            </ImageBrush>
+                        </Border.Background>
+                    </Border>
+                    <TextBlock Text="{Binding Path=Text, ElementName=NameTextBox, FallbackValue=Наименование, TargetNullValue=Наименование, Mode=TwoWay}"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               FontSize="30"
+                               Margin="0 30"
+                               Width="Auto"/>
+                </StackPanel>
+            </Border>
+            <Button Name="AddPhotoButton" 
+                    Content="Добавить фото" 
+                    Click="AddPhotoButton_Click" 
+                    Margin="30" 
+                    Style="{StaticResource BaseButtonStyle}"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal">
+            <TextBlock Text="Добавление новой категории" 
+                   Margin="20 0"
+                   FontFamily="{StaticResource Bauhaus}"
+                   Width="350"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    Margin="50">
+            <TextBlock Text="Идентификатор"/>
+            <TextBox Name="IDTextBox"
+                     IsEnabled="False"/>
+            <TextBlock Text="Наименованиe"/>
+            <TextBox Name="NameTextBox"/>
+            <TextBlock Text="Группа"/>
+            <ComboBox Name="GroupComboBox"
+                      Style="{StaticResource ComboBoxBaseStyle}"
+                      Margin="10"/>
+            <TextBlock Text="Цвет подложки"/>
+            <xctk:ColorPicker Name="BackgroundColorPicker"
+                              SelectedColorChanged="BackgroundColorPicker_SelectedColorChanged">
+                <xctk:ColorPicker.Resources>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                </xctk:ColorPicker.Resources>
+                <xctk:ColorPicker.ButtonStyle>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton" xmlns:chrome="clr-namespace:Xceed.Wpf.Toolkit.Chromes;assembly=Xceed.Wpf.Toolkit">
+                                    <Grid SnapsToDevicePixels="True">
+
+                                        <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Padding="{TemplateBinding Padding}"
+                                        SnapsToDevicePixels="True"
+                                                    CornerRadius="10">
+                                            <ContentPresenter Content="{TemplateBinding Content}"
+                                                    Margin="3"
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                            </ContentPresenter>
+                                        </Border>
+                                        <chrome:ButtonChrome x:Name="ToggleButtonChrome"
+                                                    CornerRadius="10"
+                                                    Width="30"
+                                                    HorizontalAlignment="Right"
+                                                    Visibility="{Binding ShowDropDownButton, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=xctk:ColorPicker}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    RenderChecked="{Binding IsOpen, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=xctk:ColorPicker}}"
+                                                    RenderEnabled="{Binding IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=xctk:ColorPicker}}"
+                                                    RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                                    RenderPressed="{TemplateBinding IsPressed}">
+                                            <Path Data="{StaticResource HidePathData}"
+                                                  Fill="Gray"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Margin="5 10 5 10"
+                                                  Stretch="Uniform"/>
+                                        </chrome:ButtonChrome>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </xctk:ColorPicker.ButtonStyle>
+            </xctk:ColorPicker>
+            <TextBlock Text="HEX - код цвета"/>
+            <TextBox Name="HEXTextBox"
+                     IsEnabled="False"/>
+            <Grid>
+                <TextBlock Text="Доступен к сборке"/>
+                <CheckBox Name="IsComputerCheckBox" HorizontalAlignment="Right" Margin="10"/>
+            </Grid>
+            <Grid>
+                <TextBlock Text="Обязателен к сборке"/>
+                <CheckBox Name="IsRequiredCheckBox" HorizontalAlignment="Right" Margin="10"/>
+            </Grid>
+            <Button Name="ClearPhotoButton" 
+                    Content="Удалить фото" 
+                    Click="ClearPhotoButton_Click"
+                    Margin="30"
+                    Style="{StaticResource BaseButtonStyle}"/>
+            <Button Name="AddCategoryButton" 
+                    Content="Сохранить" 
+                    Click="AddCategoryButton_Click" 
+                    Style="{StaticResource BaseButtonStyle}"
+                    Margin="30 0"/>
+        </StackPanel>
+
+
+    </Grid>
+
+</Page>

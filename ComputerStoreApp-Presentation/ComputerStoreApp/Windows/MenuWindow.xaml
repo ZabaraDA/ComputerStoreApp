@@ -1,0 +1,180 @@
+﻿<Window x:Class="ComputerStoreApp.Windows.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerStoreApp.Windows"
+        xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        ResizeMode="CanResize"
+        WindowState="Normal"
+        WindowStyle="None"
+        Height="900" 
+        Width="1440"
+        FontFamily="{StaticResource Doloman Pavljenko}"
+        Background="White">
+    <WindowChrome.WindowChrome>
+        <WindowChrome NonClientFrameEdges="None" GlassFrameThickness="{x:Static WindowChrome.GlassFrameCompleteThickness}"
+                      CaptionHeight="40" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="{StaticResource Gawaa}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Background" Value="{StaticResource Control.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                SnapsToDevicePixels="true"
+                                CornerRadius="0">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" 
+                                              x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Control.IsMouseOver.Background}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="LightGray"/>
+        <Border Height="35"
+                Width="400"
+                CornerRadius=" 0 0 20 20"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Background="DarkGray">
+            <TextBlock Name="AccessTextBlock"
+                       Text="Computer Store"
+                       TextAlignment="Center"
+                       FontSize="26"
+                       VerticalAlignment="Center"/>
+        </Border>
+        <Frame Grid.Row="1"
+               Name="MenuFrame"
+               NavigationUIVisibility="Hidden"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Width" 
+                            Value="35"/>
+                    <Setter Property="Height" 
+                            Value="35"/>
+                    <Setter Property="Margin" 
+                            Value="0 0 0 0"/>
+                    <Setter Property="BorderThickness" 
+                            Value="0 7 0 0"/>
+                    <Setter Property="Background" 
+                            Value="LightGray"/>
+                    <Setter Property="FontFamily" 
+                            Value="{StaticResource Doloman Pavljenko}"/>
+                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" 
+                            Value="True"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Name="MinimizedButton"
+                    Click="MinimizedButton_Click">
+                <Icon:PackIconMaterial Kind="WindowMinimize"/>
+            </Button>
+            <Button Name="StateButton"
+                    Click="StateButton_Click">
+                
+                <Icon:PackIconMaterial Kind="Fullscreen"
+                                       Name="FullScreenIcon"/>
+            </Button>
+            <Button Margin="0 0 8 0"
+                    Name="ExitButton"
+                    Click="ExitButton_Click">
+                <Icon:PackIconMaterial Kind="LocationExit"/>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Width" 
+                            Value="35"/>
+                    <Setter Property="Height" 
+                            Value="35"/>
+                    <Setter Property="Margin" 
+                            Value="0 0 0 0"/>
+                    <Setter Property="BorderThickness" 
+                            Value="0 7 0 0"/>
+                    <Setter Property="Background" 
+                            Value="LightGray"/>
+                    <Setter Property="FontFamily" 
+                            Value="{StaticResource Doloman Pavljenko}"/>
+                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" 
+                            Value="True"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Margin="8 0 0 0"
+                HorizontalAlignment="Left"
+                    Name="LogoutButton"
+                    Click="LogoutButton_Click">
+                <Icon:PackIconMaterial Kind="Logout">
+                    <Icon:PackIconMaterial.RenderTransform>
+                        <RotateTransform Angle="180" 
+                                         CenterX="8"
+                                         CenterY="8"/>
+                    </Icon:PackIconMaterial.RenderTransform>
+                </Icon:PackIconMaterial>
+            </Button>
+            <Button HorizontalAlignment="Left"
+                    Name="MenuButton"
+                    Click="MenuButton_Click">
+                <Icon:PackIconMaterial Kind="Menu"/>
+            </Button>
+            <TextBox Text="{Binding Name}"
+                     Background="Transparent"
+                     VerticalAlignment="Top"
+                     FontSize="24"
+                     FontFamily="{StaticResource Doloman Pavljenko}"
+                     BorderThickness="0 7 0 0"
+                     BorderBrush="#FF707070"/>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

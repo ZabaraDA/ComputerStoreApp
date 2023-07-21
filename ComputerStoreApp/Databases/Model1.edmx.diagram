@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a30393ca720244f9909cf5ae390d6e74" Name="Diagram1">
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Accessory" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Account" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Category" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Computer" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.ComputerAccessory" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Firm" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Group" Width="1.5" PointX="1.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.LinePropertyAccessory" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.NumberAccessoryProperty" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Photo" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Property" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Type" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.TypeAccessoryProperty" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerStoreDatabaseModel.Unit" Width="1.5" PointX="3.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Accessory_Category1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Accessory_Firm" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_ComputerAccessory_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_LinePropertyAccessory_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_NumberAccessoryProperty_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Photo_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_TypeAccessoryProperty_Accessory" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Category_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Computer_Firm" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_ComputerAccessory_Computer" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_LinePropertyAccessory_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_NumberAccessoryProperty_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Property_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_Type_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.FK_TypeAccessoryProperty_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerStoreDatabaseModel.CategoryProperty" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

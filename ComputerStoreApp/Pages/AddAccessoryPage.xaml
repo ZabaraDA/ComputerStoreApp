@@ -1,0 +1,529 @@
+﻿<Page x:Class="ComputerStoreApp.Pages.AddAccessoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:classes="clr-namespace:ComputerStoreApp.Classes"
+      xmlns:local="clr-namespace:ComputerStoreApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1200" d:DesignWidth="1800"
+      Title="AddAccessoryPage">
+
+    <Page.Resources>
+
+        <!--<Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid Background="WhiteSmoke"
+                                              Margin="1"
+                                              Height="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Property.Name}"
+                                                       FontFamily="{StaticResource Doloman Pavljenko}"
+                                                       FontSize="22"
+                                                       VerticalAlignment="Center"
+                                                       Margin="30 10"/>
+                            <ComboBox Grid.Column="1"
+                                                      HorizontalAlignment="Right"
+                                                      Margin="30 0"
+                                                      ItemsSource="{Binding Property.Type}"
+                                                      FontSize="20">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontFamily="{StaticResource Doloman Pavljenko}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
+        <Style TargetType="{x:Type TextBox}"
+               BasedOn="{StaticResource BaseTextBoxStyle}">
+            <Setter Property="Width"
+                    Value="300"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="Margin"
+                    Value="10"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Right"/>
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Doloman Pavljenko}"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Width"
+                    Value="200"/>
+            <Setter Property="Height"
+                    Value="30"/>
+            <Setter Property="Margin"
+                    Value="10"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Doloman Pavljenko}"/>
+            <Setter Property="FontSize"
+                    Value="24"/>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}"
+               x:Key="AccessoryListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid Margin="5">
+                            <Border CornerRadius="5"
+                                     Height="190" 
+                                     Width="190" 
+                                     Margin="10"
+                                     BorderBrush="LightGray"
+                                     BorderThickness="2"
+                                     Name="PhotoBorder">
+                                <Border.Background>
+                                    <ImageBrush Stretch="UniformToFill">
+                                        <ImageBrush.ImageSource>
+                                            <Binding Path="Photo1">
+                                                <Binding.TargetNullValue>
+                                                    <ImageSource>/Images/ImageStub.png</ImageSource>
+                                                </Binding.TargetNullValue>
+                                            </Binding>
+                                        </ImageBrush.ImageSource>
+                                    </ImageBrush>
+                                </Border.Background>
+                            </Border>
+                            <Button Name="DeletePhotoButton" 
+                                    Visibility="Hidden"
+                                    Click="DeletePhotoButton_Click"
+                                    Width="40"
+                                    Height="40"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource BaseButtonStyle}"
+                                    BorderThickness="1"
+                                    Cursor="Hand">
+                                <Icon:PackIconMaterial Kind="TrashCan"/>
+                            </Button>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="DeletePhotoButton" 
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver"
+                                     SourceName="DeletePhotoButton"
+                                     Value="True">
+                                <Setter TargetName="PhotoBorder" 
+                                        Property="BorderBrush"
+                                        Value="Snow"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ComboBox"
+               BasedOn="{StaticResource ComboBoxBaseStyle}">
+            <Setter Property="Width" Value="270"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="Transparent"
+                Height="40"
+                BorderThickness="0 0 0 1"
+                BorderBrush="Gray"
+                Grid.ColumnSpan="2"/>
+
+        <Border Width="1"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                Background="Gray"
+                Margin="20"
+                Grid.RowSpan="4"/>
+
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="2" 
+                    Margin="30 0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Name="AddPhotoButton" 
+                    Content="Добавить фото" 
+                    Click="AddPhotoButton_Click" 
+                    Style="{StaticResource BaseButtonStyle}"
+                    Height="35"
+                    Width="200"
+                    Margin="20 0"/>
+            <Button Name="ClearPhotoButton" 
+                    Content="Удалить все фото" 
+                    Click="ClearPhotoButton_Click"
+                    Style="{StaticResource BaseButtonStyle}"
+                    Height="35"
+                    Width="200"/>
+        </StackPanel>
+
+        <TextBlock Text="Изображения товара" 
+                   Width="250"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   VerticalAlignment="Top"
+                   Margin="20 10"/>
+
+        <ListBox Name="PhotoListBox"
+                     ItemsSource="{Binding Path=PhotoList, UpdateSourceTrigger=PropertyChanged}"
+                     Height="240"
+                     Width="Auto"
+                     ItemContainerStyle="{StaticResource ResourceKey=AccessoryListBoxItem}"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 Margin="20 40 30 10"
+                 Background="#FFE5E5E5"
+                 BorderThickness="0">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal"
+                    Grid.ColumnSpan="2">
+            <!--<TextBlock Text="Добавление нового товара - " 
+                   Margin="20 0 0 0"
+                   FontFamily="{StaticResource Bauhaus}"
+                   Width="Auto"/>-->
+            <TextBlock Name="CategoryTextBlock"
+                       Width="Auto"
+                       Margin="20 0"
+                       VerticalAlignment="Center"
+                       FontFamily="{StaticResource Bauhaus}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.RowSpan="4"
+                    HorizontalAlignment="Left"
+                    Margin="50"
+                    Name="AccessoryStackPanel" Cursor="">
+            <TextBlock Text="Идентификатор"/>
+            <TextBox Name="IDTextBox"
+                     IsEnabled="False"/>
+            <TextBlock Text="Наименованиe"/>
+            <TextBox Name="NameTextBox"
+                     Text="{Binding Name}"/>
+            <TextBlock Text="Компания-производитель"
+                       Width="Auto"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <ComboBox Name="FirmComboBox"
+                          SelectedItem="{Binding Firm}"
+                          SelectedValue="{Binding Path= Firm.ID}"
+                              SelectedValuePath="ID"/>
+                <Button Name="AddFirmButton"
+                        Click="AddFirmButton_Click"
+                        Width="30"
+                        Height="30"
+                        Margin="0 10"
+                        Style="{StaticResource ComboBoxButtonStyle}">
+                    <Icon:PackIconMaterial Kind="PlusBox"></Icon:PackIconMaterial>
+                </Button>
+            </StackPanel>
+
+            <TextBlock Text="Стоимость"/>
+            <TextBox Name="CostTextBox"
+                     Text="{Binding Cost, StringFormat={}{0:N2}, ConverterCulture='ru-RU'}"
+                     PreviewKeyDown="TextBox_PreviewKeyDown"
+                     ContextMenu="{StaticResource TextBoxContextMenu}"/>
+
+            <TextBlock Text="Количество"/>
+            <TextBox Name="QuantityTextBox"
+                     Text="{Binding Quantity}"
+                     PreviewKeyDown="TextBox_PreviewKeyDown"
+                     ContextMenu="{StaticResource TextBoxContextMenu}"/>
+
+            <Grid Margin="0 10 0 0">
+                <TextBlock Text="Доступен к продаже"/>
+                <CheckBox Name="IsRequiredCheckBox" 
+                          HorizontalAlignment="Right" 
+                          Margin="10"
+                          IsChecked="{Binding Status}"/>
+            </Grid>
+
+            <Button Name="AddAccessoryButton" 
+                    Content="Сохранить" 
+                    Click="AddAccessoryButton_Click" 
+                    Style="{StaticResource BaseButtonStyle}"
+                    Margin="30"/>
+        </StackPanel>
+
+        <Border Background="White"
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.RowSpan="2"
+                Margin="25 10 30 10"
+                BorderThickness="1"
+                BorderBrush="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" 
+                                  ShadowDepth="0"
+                                  Opacity="0.3"
+                                  Direction="30" 
+                                  RenderingBias="Performance"/>
+            </Border.Effect>
+            <Border.Resources>
+                <!--<Style TargetType="{x:Type TextBlock}">
+                    
+                </Style>-->
+            </Border.Resources>
+            <Grid Cursor="">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListBox Name="PropertyListBox"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="3">
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type classes:TypeProperty}">
+                            <Grid Background="WhiteSmoke"
+                                              Margin="1"
+                                              Height="60">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Property.Name}"
+                                                       FontFamily="{StaticResource Doloman Pavljenko}"
+                                                       FontSize="22"
+                                                       VerticalAlignment="Center"
+                                                       Margin="30 10"/>
+                                <StackPanel Grid.Column="1"
+                                                      HorizontalAlignment="Right"
+                                                      Margin="10 0"
+                                            Orientation="Horizontal">
+                                <ComboBox ItemsSource="{Binding Property.Type}"
+                                                      FontSize="20"
+                                          SelectedIndex="0"
+                                          Width="300"
+                                          SelectedItem="{Binding Type}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}"
+                                                   FontFamily="{StaticResource Doloman Pavljenko}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                    <Button Name="RemovePropertyButton"
+                                            Click="RemovePropertyButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Style="{StaticResource ComboBoxButtonStyle}"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="TrashCan"/>
+                </Button>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type classes:NumberProperty}">
+                            <Grid Background="WhiteSmoke"
+                                              Margin="1"
+                                              Height="60">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Property.Name}"
+                                                       FontFamily="{StaticResource Doloman Pavljenko}"
+                                                       FontSize="22"
+                                                       VerticalAlignment="Center"
+                                                       Margin="30 10"/>
+                                <Grid Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                                      Margin="10 0">
+                                    <TextBox Text="{Binding Number}"
+                                                      FontSize="20"
+                                                      Width="270"
+                                             HorizontalAlignment="Right"
+                                             Margin="60 0">
+                                    </TextBox>
+                                    <Label Content="{Binding Property.Unit.Аbbreviation}"
+                                               VerticalAlignment="Center"
+                                               Width="40"
+                                               Height="30"
+                                               HorizontalAlignment="Right"
+                                               Margin="30 0"
+                                               HorizontalContentAlignment="Center"
+                                               Background="Gray"
+                                               Foreground="White"/>
+                                    <Button Name="RemovePropertyButton"
+                                            Click="RemovePropertyButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Style="{StaticResource ComboBoxButtonStyle}"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                                            Margin="0">
+                                        <Icon:PackIconMaterial Kind="TrashCan"/>
+                                        </Button>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type classes:LineProperty}">
+                            <Grid Background="WhiteSmoke"
+                                              Margin="1"
+                                              Height="60">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Property.Name}"
+                                                       FontFamily="{StaticResource Doloman Pavljenko}"
+                                                       FontSize="22"
+                                                       VerticalAlignment="Center"
+                                                       Margin="30 10"/>
+                                <StackPanel Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                                      Margin="10 0"
+                                            Orientation="Horizontal">
+                                    <TextBox Text="{Binding Line}"
+                                                      FontSize="20"
+                                                      Width="270">
+                                    </TextBox>
+                                    <TextBlock Text="{Binding Property.Unit.Аbbreviation}"
+                                               VerticalAlignment="Center"
+                                               Margin="1"
+                                               Width="50"/>
+                                    <Button Name="RemovePropertyButton"
+                                            Click="RemovePropertyButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Style="{StaticResource BaseButtonStyle}">
+                                        <Icon:PackIconMaterial Kind="Close"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Width" Value="Auto"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <!--<Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <ContentPresenter></ContentPresenter>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>-->
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <Border Background="WhiteSmoke"
+                        Grid.ColumnSpan="3"/>
+
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="20 5">
+                    <ComboBox Name="TypeComboBox"
+                        SelectionChanged="TypeComboBox_SelectionChanged"
+                              FontFamily="{StaticResource AC Boucle}"
+                              FontSize="20" Cursor="AppStarting">
+                        <ComboBoxItem Content="Выберите тип свойства"/>
+                        <ComboBoxItem Content="Числовое свойство"/>
+                        <ComboBoxItem Content="Текствое свойство"/>
+                        <ComboBoxItem Content="Типовое свойство"/>
+                    </ComboBox>
+                    <!--<TextBox Name="TypeSearchTextBox"/>-->
+                </StackPanel>
+                
+                <ComboBox Name="PropertyComboBox"
+                      HorizontalAlignment="Right"
+                              Width="Auto"
+                              FontFamily="{StaticResource AC Boucle}"
+                              FontSize="20" Cursor="AppStarting"
+                              Grid.Column="2"
+                          Margin="0 10 90 10"
+                          MinWidth="300" SelectionChanged="PropertyComboBox_SelectionChanged"/>
+                <Button Name="AddPropertyButton"
+                        Click="AddPropertyButton_Click"
+                        Width="30"
+                        Height="30"
+                        Margin="0 10 60 10"
+                        Style="{StaticResource ComboBoxButtonStyle}"
+                        Template="{StaticResource CenterButtonControlTemplate}"
+                            Grid.Column="2"
+                        HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="PlaylistPlus"></Icon:PackIconMaterial>
+                </Button>
+                <Button Name="ChangePropertyButton"
+                                            Click="ChangePropertyButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Style="{StaticResource ComboBoxButtonStyle}"
+                        Grid.Column="2"
+                        Margin="0 10 30 10"
+                        HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="Pencil"/>
+                </Button>
+                <Button Style="{StaticResource BaseButtonStyle}"
+                        Width="Auto"
+                        Height="30"
+                        Name="AddAccessoryPropertyButton"
+                        Click="AddAccessoryPropertyButton_Click"
+                        Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="ArrowDown" 
+                                               Height="18"/>
+                        <TextBlock Text="Добавить свойство"
+                                   Margin="0"
+                                   FontFamily="{StaticResource Gawaa}"
+                                   FontSize="22"
+                                   Width="Auto"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

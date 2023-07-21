@@ -1,0 +1,1049 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ComputerStoreDatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accessory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FirmID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Access" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsComputer" Type="bit" Nullable="false" />
+          <Property Name="IsRequired" Type="bit" Nullable="false" />
+          <Property Name="Photo" Type="image" Nullable="false" />
+          <Property Name="ColorBackground" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryProperty">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirmID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComputerAccessory">
+          <Key>
+            <PropertyRef Name="ComputerID" />
+            <PropertyRef Name="AccessoryID" />
+          </Key>
+          <Property Name="ComputerID" Type="int" Nullable="false" />
+          <Property Name="AccessoryID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <EntityType Name="LinePropertyAccessory">
+          <Key>
+            <PropertyRef Name="AccessoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="AccessoryID" Type="int" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="Line" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NumberAccessoryProperty">
+          <Key>
+            <PropertyRef Name="AccessoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="AccessoryID" Type="int" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="Number" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="image" Nullable="false" />
+          <Property Name="AccessoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Form" Type="tinyint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="UnitID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeAccessoryProperty">
+          <Key>
+            <PropertyRef Name="AccessoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="AccessoryID" Type="int" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Аbbreviation" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accessory_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accessory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accessory_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accessory">
+              <PropertyRef Name="FirmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryProperty_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryProperty" Type="Self.CategoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CategoryProperty">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="CategoryProperty" Type="Self.CategoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CategoryProperty">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="FirmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerAccessory_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="ComputerAccessory" Type="Self.ComputerAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerAccessory">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerAccessory_Computer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="ComputerAccessory" Type="Self.ComputerAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerAccessory">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinePropertyAccessory_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="LinePropertyAccessory" Type="Self.LinePropertyAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LinePropertyAccessory">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinePropertyAccessory_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="LinePropertyAccessory" Type="Self.LinePropertyAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LinePropertyAccessory">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumberAccessoryProperty_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="NumberAccessoryProperty" Type="Self.NumberAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NumberAccessoryProperty">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumberAccessoryProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="NumberAccessoryProperty" Type="Self.NumberAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NumberAccessoryProperty">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photo_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="Type" Type="Self.Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Type">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeAccessoryProperty_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="TypeAccessoryProperty" Type="Self.TypeAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeAccessoryProperty">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeAccessoryProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="TypeAccessoryProperty" Type="Self.TypeAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeAccessoryProperty">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ComputerStoreDatabaseModelContainer">
+          <EntitySet Name="Accessory" EntityType="Self.Accessory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryProperty" EntityType="Self.CategoryProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComputerAccessory" EntityType="Self.ComputerAccessory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firm" EntityType="Self.Firm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LinePropertyAccessory" EntityType="Self.LinePropertyAccessory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NumberAccessoryProperty" EntityType="Self.NumberAccessoryProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeAccessoryProperty" EntityType="Self.TypeAccessoryProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accessory_Category1" Association="Self.FK_Accessory_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Accessory" EntitySet="Accessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accessory_Firm" Association="Self.FK_Accessory_Firm">
+            <End Role="Firm" EntitySet="Firm" />
+            <End Role="Accessory" EntitySet="Accessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Group" Association="Self.FK_Category_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryProperty_Category" Association="Self.FK_CategoryProperty_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryProperty" EntitySet="CategoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryProperty_Property" Association="Self.FK_CategoryProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="CategoryProperty" EntitySet="CategoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_Firm" Association="Self.FK_Computer_Firm">
+            <End Role="Firm" EntitySet="Firm" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerAccessory_Accessory" Association="Self.FK_ComputerAccessory_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="ComputerAccessory" EntitySet="ComputerAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerAccessory_Computer" Association="Self.FK_ComputerAccessory_Computer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="ComputerAccessory" EntitySet="ComputerAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinePropertyAccessory_Accessory" Association="Self.FK_LinePropertyAccessory_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="LinePropertyAccessory" EntitySet="LinePropertyAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinePropertyAccessory_Property" Association="Self.FK_LinePropertyAccessory_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="LinePropertyAccessory" EntitySet="LinePropertyAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumberAccessoryProperty_Accessory" Association="Self.FK_NumberAccessoryProperty_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="NumberAccessoryProperty" EntitySet="NumberAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumberAccessoryProperty_Property" Association="Self.FK_NumberAccessoryProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="NumberAccessoryProperty" EntitySet="NumberAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_Accessory" Association="Self.FK_Photo_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_Unit" Association="Self.FK_Property_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Property" Association="Self.FK_Type_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeAccessoryProperty_Accessory" Association="Self.FK_TypeAccessoryProperty_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="TypeAccessoryProperty" EntitySet="TypeAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeAccessoryProperty_Property" Association="Self.FK_TypeAccessoryProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="TypeAccessoryProperty" EntitySet="TypeAccessoryProperty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComputerStoreDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accessory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirmID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Accessory_Category1" FromRole="Accessory" ToRole="Category" />
+          <NavigationProperty Name="Firm" Relationship="Self.FK_Accessory_Firm" FromRole="Accessory" ToRole="Firm" />
+          <NavigationProperty Name="ComputerAccessory" Relationship="Self.FK_ComputerAccessory_Accessory" FromRole="Accessory" ToRole="ComputerAccessory" />
+          <NavigationProperty Name="LinePropertyAccessory" Relationship="Self.FK_LinePropertyAccessory_Accessory" FromRole="Accessory" ToRole="LinePropertyAccessory" />
+          <NavigationProperty Name="NumberAccessoryProperty" Relationship="Self.FK_NumberAccessoryProperty_Accessory" FromRole="Accessory" ToRole="NumberAccessoryProperty" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK_Photo_Accessory" FromRole="Accessory" ToRole="Photo" />
+          <NavigationProperty Name="TypeAccessoryProperty" Relationship="Self.FK_TypeAccessoryProperty_Accessory" FromRole="Accessory" ToRole="TypeAccessoryProperty" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Access" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsComputer" Type="Boolean" Nullable="false" />
+          <Property Name="IsRequired" Type="Boolean" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ColorBackground" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_Accessory_Category1" FromRole="Category" ToRole="Accessory" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Category_Group" FromRole="Category" ToRole="Group" />
+          <NavigationProperty Name="Property" Relationship="Self.CategoryProperty" FromRole="Category" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirmID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Firm" Relationship="Self.FK_Computer_Firm" FromRole="Computer" ToRole="Firm" />
+          <NavigationProperty Name="ComputerAccessory" Relationship="Self.FK_ComputerAccessory_Computer" FromRole="Computer" ToRole="ComputerAccessory" />
+        </EntityType>
+        <EntityType Name="ComputerAccessory">
+          <Key>
+            <PropertyRef Name="ComputerID" />
+            <PropertyRef Name="AccessoryID" />
+          </Key>
+          <Property Name="ComputerID" Type="Int32" Nullable="false" />
+          <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_ComputerAccessory_Accessory" FromRole="ComputerAccessory" ToRole="Accessory" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_ComputerAccessory_Computer" FromRole="ComputerAccessory" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_Accessory_Firm" FromRole="Firm" ToRole="Accessory" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_Firm" FromRole="Firm" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Category_Group" FromRole="Group" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="LinePropertyAccessory">
+          <Key>
+            <PropertyRef Name="AccessoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="Line" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_LinePropertyAccessory_Accessory" FromRole="LinePropertyAccessory" ToRole="Accessory" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_LinePropertyAccessory_Property" FromRole="LinePropertyAccessory" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="NumberAccessoryProperty">
+          <Key>
+            <PropertyRef Name="AccessoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_NumberAccessoryProperty_Accessory" FromRole="NumberAccessoryProperty" ToRole="Accessory" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_NumberAccessoryProperty_Property" FromRole="NumberAccessoryProperty" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_Photo_Accessory" FromRole="Photo" ToRole="Accessory" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Form" Type="Byte" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UnitID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LinePropertyAccessory" Relationship="Self.FK_LinePropertyAccessory_Property" FromRole="Property" ToRole="LinePropertyAccessory" />
+          <NavigationProperty Name="NumberAccessoryProperty" Relationship="Self.FK_NumberAccessoryProperty_Property" FromRole="Property" ToRole="NumberAccessoryProperty" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK_Property_Unit" FromRole="Property" ToRole="Unit" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Type_Property" FromRole="Property" ToRole="Type" />
+          <NavigationProperty Name="TypeAccessoryProperty" Relationship="Self.FK_TypeAccessoryProperty_Property" FromRole="Property" ToRole="TypeAccessoryProperty" />
+          <NavigationProperty Name="Category" Relationship="Self.CategoryProperty" FromRole="Property" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_Type_Property" FromRole="Type" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="TypeAccessoryProperty">
+          <Key>
+            <PropertyRef Name="AccessoryID" />
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="AccessoryID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accessory" Relationship="Self.FK_TypeAccessoryProperty_Accessory" FromRole="TypeAccessoryProperty" ToRole="Accessory" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_TypeAccessoryProperty_Property" FromRole="TypeAccessoryProperty" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Аbbreviation" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_Property_Unit" FromRole="Unit" ToRole="Property" />
+        </EntityType>
+        <Association Name="FK_Accessory_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accessory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accessory_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accessory">
+              <PropertyRef Name="FirmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerAccessory_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="ComputerAccessory" Type="Self.ComputerAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerAccessory">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinePropertyAccessory_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="LinePropertyAccessory" Type="Self.LinePropertyAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LinePropertyAccessory">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumberAccessoryProperty_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="NumberAccessoryProperty" Type="Self.NumberAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NumberAccessoryProperty">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photo_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeAccessoryProperty_Accessory">
+          <End Role="Accessory" Type="Self.Accessory" Multiplicity="1" />
+          <End Role="TypeAccessoryProperty" Type="Self.TypeAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeAccessoryProperty">
+              <PropertyRef Name="AccessoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_Firm">
+          <End Role="Firm" Type="Self.Firm" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="FirmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerAccessory_Computer">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+          <End Role="ComputerAccessory" Type="Self.ComputerAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComputerAccessory">
+              <PropertyRef Name="ComputerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinePropertyAccessory_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="LinePropertyAccessory" Type="Self.LinePropertyAccessory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LinePropertyAccessory">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NumberAccessoryProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="NumberAccessoryProperty" Type="Self.NumberAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NumberAccessoryProperty">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="Type" Type="Self.Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Type">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeAccessoryProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="TypeAccessoryProperty" Type="Self.TypeAccessoryProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeAccessoryProperty">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryProperty">
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ComputerStoreDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accessory" EntityType="Self.Accessory" />
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Computer" EntityType="Self.Computer" />
+          <EntitySet Name="ComputerAccessory" EntityType="Self.ComputerAccessory" />
+          <EntitySet Name="Firm" EntityType="Self.Firm" />
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="LinePropertyAccessory" EntityType="Self.LinePropertyAccessory" />
+          <EntitySet Name="NumberAccessoryProperty" EntityType="Self.NumberAccessoryProperty" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" />
+          <EntitySet Name="Property" EntityType="Self.Property" />
+          <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="TypeAccessoryProperty" EntityType="Self.TypeAccessoryProperty" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" />
+          <AssociationSet Name="FK_Accessory_Category1" Association="Self.FK_Accessory_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Accessory" EntitySet="Accessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accessory_Firm" Association="Self.FK_Accessory_Firm">
+            <End Role="Firm" EntitySet="Firm" />
+            <End Role="Accessory" EntitySet="Accessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerAccessory_Accessory" Association="Self.FK_ComputerAccessory_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="ComputerAccessory" EntitySet="ComputerAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinePropertyAccessory_Accessory" Association="Self.FK_LinePropertyAccessory_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="LinePropertyAccessory" EntitySet="LinePropertyAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumberAccessoryProperty_Accessory" Association="Self.FK_NumberAccessoryProperty_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="NumberAccessoryProperty" EntitySet="NumberAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_Accessory" Association="Self.FK_Photo_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeAccessoryProperty_Accessory" Association="Self.FK_TypeAccessoryProperty_Accessory">
+            <End Role="Accessory" EntitySet="Accessory" />
+            <End Role="TypeAccessoryProperty" EntitySet="TypeAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Group" Association="Self.FK_Category_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_Firm" Association="Self.FK_Computer_Firm">
+            <End Role="Firm" EntitySet="Firm" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerAccessory_Computer" Association="Self.FK_ComputerAccessory_Computer">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="ComputerAccessory" EntitySet="ComputerAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinePropertyAccessory_Property" Association="Self.FK_LinePropertyAccessory_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="LinePropertyAccessory" EntitySet="LinePropertyAccessory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumberAccessoryProperty_Property" Association="Self.FK_NumberAccessoryProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="NumberAccessoryProperty" EntitySet="NumberAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_Unit" Association="Self.FK_Property_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Property" Association="Self.FK_Type_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeAccessoryProperty_Property" Association="Self.FK_TypeAccessoryProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="TypeAccessoryProperty" EntitySet="TypeAccessoryProperty" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryProperty" Association="Self.CategoryProperty">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ComputerStoreDatabaseModelContainer" CdmEntityContainer="ComputerStoreDatabaseEntities">
+          <EntitySetMapping Name="Accessory">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Accessory">
+              <MappingFragment StoreEntitySet="Accessory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Access" ColumnName="Access" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsComputer" ColumnName="IsComputer" />
+                <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ColorBackground" ColumnName="ColorBackground" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Computer">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Computer">
+              <MappingFragment StoreEntitySet="Computer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComputerAccessory">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.ComputerAccessory">
+              <MappingFragment StoreEntitySet="ComputerAccessory">
+                <ScalarProperty Name="ComputerID" ColumnName="ComputerID" />
+                <ScalarProperty Name="AccessoryID" ColumnName="AccessoryID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firm">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Firm">
+              <MappingFragment StoreEntitySet="Firm">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinePropertyAccessory">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.LinePropertyAccessory">
+              <MappingFragment StoreEntitySet="LinePropertyAccessory">
+                <ScalarProperty Name="AccessoryID" ColumnName="AccessoryID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NumberAccessoryProperty">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.NumberAccessoryProperty">
+              <MappingFragment StoreEntitySet="NumberAccessoryProperty">
+                <ScalarProperty Name="AccessoryID" ColumnName="AccessoryID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photo">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Photo1" ColumnName="Photo" />
+                <ScalarProperty Name="AccessoryID" ColumnName="AccessoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Property">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Form" ColumnName="Form" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeAccessoryProperty">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.TypeAccessoryProperty">
+              <MappingFragment StoreEntitySet="TypeAccessoryProperty">
+                <ScalarProperty Name="AccessoryID" ColumnName="AccessoryID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unit">
+            <EntityTypeMapping TypeName="ComputerStoreDatabaseModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Аbbreviation" ColumnName="Аbbreviation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CategoryProperty" TypeName="ComputerStoreDatabaseModel.CategoryProperty" StoreEntitySet="CategoryProperty">
+            <EndProperty Name="Category">
+              <ScalarProperty Name="ID" ColumnName="CategoryID" />
+            </EndProperty>
+            <EndProperty Name="Property">
+              <ScalarProperty Name="ID" ColumnName="PropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
